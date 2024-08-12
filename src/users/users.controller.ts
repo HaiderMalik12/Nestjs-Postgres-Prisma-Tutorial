@@ -1,15 +1,15 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { CreateUserDTO } from './create-user-dto';
+import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
+  constructor(private userService: UsersService) {}
   @Post('/signup')
-  create(
+  async create(
     @Body()
     createUserDTO: CreateUserDTO,
   ) {
-    // firstName, lastName, email, password, createdAt
-    console.log(typeof createUserDTO.blocked);
-    return createUserDTO;
+    return await this.userService.signup(createUserDTO);
   }
 }
