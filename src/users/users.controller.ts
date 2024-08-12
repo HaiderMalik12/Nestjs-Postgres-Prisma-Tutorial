@@ -9,6 +9,7 @@ export class UsersController {
     createUserDTO: CreateUserDTO,
   ) {
     // firstName, lastName, email, password, createdAt
+    console.log(typeof createUserDTO.blocked);
     return createUserDTO;
   }
 }
