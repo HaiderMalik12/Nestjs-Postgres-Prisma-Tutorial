@@ -22,11 +22,8 @@ export class UsersService {
         },
       );
     }
-    // save the user password in encrypted - bcryptjs
     const hash = await this.encryptPassword(payload.password, 10);
-    // save the user in the db
     payload.password = hash;
-    // return id and email
     return await this.prisma.user.create({
       data: payload,
       select: {
