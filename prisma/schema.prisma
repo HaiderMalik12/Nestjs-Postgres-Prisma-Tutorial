@@ -13,6 +13,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+  SUPER_ADMIN
+  SUB_ADMIN
+  MANAGER
+  CONTRIBUTOR
+}
+
 model User {
   id Int @id @default(autoincrement())
   firstName String?
@@ -21,4 +30,6 @@ model User {
   password String 
   createdAt DateTime @default(now())
   blocked Boolean?
+
+  role     Role  @default(USER)
 }

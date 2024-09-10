@@ -67,6 +67,7 @@ export class UsersService {
       {
         email: user.email,
         id: user.id,
+        role: user.role,
       },
       { expiresIn: '1d' },
     );

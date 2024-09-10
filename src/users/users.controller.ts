@@ -10,6 +10,9 @@ import { CreateUserDTO } from './create-user-dto';
 import { UsersService } from './users.service';
 import { LoginDTO } from './login-dto';
 import { AuthGuard } from './auth.guard';
+import { Roles } from 'src/roles/role.decorator';
+import { Role } from 'src/roles/roles.enum';
+import { RolesGuard } from 'src/roles/roles.guard';
 
 @Controller('users')
 export class UsersController {
@@ -30,8 +33,9 @@ export class UsersController {
     return await this.userService.login(loginDTO);
   }
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   @Get('/profile')
+  @Roles(Role.User)
   async getProfile(@Request() req) {
     return req.user;
   }
